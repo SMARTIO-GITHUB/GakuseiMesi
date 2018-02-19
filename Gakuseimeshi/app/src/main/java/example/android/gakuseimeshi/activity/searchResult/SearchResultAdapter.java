@@ -84,12 +84,14 @@ public class SearchResultAdapter extends BaseAdapter {
 
         ImageView imageView = (ImageView)convertView.findViewById(R.id.shopImage);
         // 画像の設定 "{}"ならno_imageをセットし，URLなら画像を取得してセット
+        imageView.setTag(ImageURLList.get(index).getImage());
+
         if(ImageURLList.get(index).getImage().equals("{}")){
             imageView.setImageResource(R.drawable.no_image);
         } else {
             Uri uri = Uri.parse(ImageURLList.get(index).getImage());
             Uri.Builder builder = uri.buildUpon();
-            imageView.setTag(ImageURLList.get(index).getImage());
+            //imageView.setTag(ImageURLList.get(index).getImage());
             ImageAsyncTask task = new ImageAsyncTask(imageView);
             task.execute(builder);
         }
