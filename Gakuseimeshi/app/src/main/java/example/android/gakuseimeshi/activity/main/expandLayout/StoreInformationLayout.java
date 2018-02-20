@@ -22,15 +22,13 @@ public class StoreInformationLayout extends LinearLayout {//custom_layout.xmlの
     public TextView shopHour;
 
     public void setShopImage(String image_url) {
-        shopImage.setTag(image_url);
-
         if(image_url.isEmpty()){
             this.shopImage.setImageResource(R.drawable.no_image);
         }else{
             Uri uri = Uri.parse(image_url);
             Uri.Builder builder = uri.buildUpon();
-            //shopImage.setTag(image_url);
-            ImageAsyncTask task = new ImageAsyncTask(shopImage);
+            shopImage.setTag(image_url);
+            ImageAsyncTask task = new ImageAsyncTask(shopImage,null);
             task.execute(builder);
         }
     }
@@ -50,6 +48,5 @@ public class StoreInformationLayout extends LinearLayout {//custom_layout.xmlの
         shopName = (TextView)layout.findViewById(R.id.shopName);
         shopHour = (TextView)layout.findViewById(R.id.shopHour);
     }
-
 
 }
